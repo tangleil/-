@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.InformationMapper">
+  <resultMap id="BaseResultMap" type="com.domain.Information">
+    <id column="inf_id" jdbcType="INTEGER" property="infId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="police_id" jdbcType="INTEGER" property="policeId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="time_before" jdbcType="DATE" property="timeBefore" />
+    <result column="time_after" jdbcType="DATE" property="timeAfter" />
+    <result column="phone_num" jdbcType="INTEGER" property="phoneNum" />
+    <result column="face" jdbcType="VARCHAR" property="face" />
+    <result column="front_photo" jdbcType="VARCHAR" property="frontPhoto" />
+    <result column="back_photo" jdbcType="VARCHAR" property="backPhoto" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="scan_time" jdbcType="DATE" property="scanTime" />
+    <result column="suggestion" jdbcType="VARCHAR" property="suggestion" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    inf_id, user_id, police_id, name, sex, nation, birthday, address, number, organization, 
+    time_before, time_after, phone_num, face, front_photo, back_photo, department, area, 
+    scan_time, suggestion, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from information
+    where inf_id = #{infId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from information
+    where inf_id = #{infId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.domain.Information">
+    insert into information (inf_id, user_id, police_id, 
+      name, sex, nation, 
+      birthday, address, number, 
+      organization, time_before, time_after, 
+      phone_num, face, front_photo, 
+      back_photo, department, area, 
+      scan_time, suggestion, status
+      )
+    values (#{infId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{policeId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{timeBefore,jdbcType=DATE}, #{timeAfter,jdbcType=DATE}, 
+      #{phoneNum,jdbcType=INTEGER}, #{face,jdbcType=VARCHAR}, #{frontPhoto,jdbcType=VARCHAR}, 
+      #{backPhoto,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{scanTime,jdbcType=DATE}, #{suggestion,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.domain.Information">
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="infId != null">
+        inf_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="policeId != null">
+        police_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="timeBefore != null">
+        time_before,
+      </if>
+      <if test="timeAfter != null">
+        time_after,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="face != null">
+        face,
+      </if>
+      <if test="frontPhoto != null">
+        front_photo,
+      </if>
+      <if test="backPhoto != null">
+        back_photo,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="scanTime != null">
+        scan_time,
+      </if>
+      <if test="suggestion != null">
+        suggestion,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="infId != null">
+        #{infId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="policeId != null">
+        #{policeId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="timeBefore != null">
+        #{timeBefore,jdbcType=DATE},
+      </if>
+      <if test="timeAfter != null">
+        #{timeAfter,jdbcType=DATE},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="frontPhoto != null">
+        #{frontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backPhoto != null">
+        #{backPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="scanTime != null">
+        #{scanTime,jdbcType=DATE},
+      </if>
+      <if test="suggestion != null">
+        #{suggestion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.domain.Information">
+    update information
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="policeId != null">
+        police_id = #{policeId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="timeBefore != null">
+        time_before = #{timeBefore,jdbcType=DATE},
+      </if>
+      <if test="timeAfter != null">
+        time_after = #{timeAfter,jdbcType=DATE},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="face != null">
+        face = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="frontPhoto != null">
+        front_photo = #{frontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backPhoto != null">
+        back_photo = #{backPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="scanTime != null">
+        scan_time = #{scanTime,jdbcType=DATE},
+      </if>
+      <if test="suggestion != null">
+        suggestion = #{suggestion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where inf_id = #{infId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.domain.Information">
+    update information
+    set user_id = #{userId,jdbcType=INTEGER},
+      police_id = #{policeId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      time_before = #{timeBefore,jdbcType=DATE},
+      time_after = #{timeAfter,jdbcType=DATE},
+      phone_num = #{phoneNum,jdbcType=INTEGER},
+      face = #{face,jdbcType=VARCHAR},
+      front_photo = #{frontPhoto,jdbcType=VARCHAR},
+      back_photo = #{backPhoto,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      scan_time = #{scanTime,jdbcType=DATE},
+      suggestion = #{suggestion,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where inf_id = #{infId,jdbcType=INTEGER}
+  </update>
+</mapper>

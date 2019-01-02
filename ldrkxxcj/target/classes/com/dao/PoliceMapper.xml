@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PoliceMapper">
+  <resultMap id="BaseResultMap" type="com.domain.Police">
+    <id column="police_id" jdbcType="INTEGER" property="policeId" />
+    <result column="police_name" jdbcType="VARCHAR" property="policeName" />
+    <result column="police_password" jdbcType="VARCHAR" property="policePassword" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="check" jdbcType="INTEGER" property="check" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    police_id, police_name, police_password, department, area, check
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from police
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from police
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.domain.Police">
+    insert into police (police_id, police_name, police_password, 
+      department, area, check
+      )
+    values (#{policeId,jdbcType=INTEGER}, #{policeName,jdbcType=VARCHAR}, #{policePassword,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{check,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.domain.Police">
+    insert into police
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="policeId != null">
+        police_id,
+      </if>
+      <if test="policeName != null">
+        police_name,
+      </if>
+      <if test="policePassword != null">
+        police_password,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="check != null">
+        check,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="policeId != null">
+        #{policeId,jdbcType=INTEGER},
+      </if>
+      <if test="policeName != null">
+        #{policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="policePassword != null">
+        #{policePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="check != null">
+        #{check,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.domain.Police">
+    update police
+    <set>
+      <if test="policeName != null">
+        police_name = #{policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="policePassword != null">
+        police_password = #{policePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="check != null">
+        check = #{check,jdbcType=INTEGER},
+      </if>
+    </set>
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.domain.Police">
+    update police
+    set police_name = #{policeName,jdbcType=VARCHAR},
+      police_password = #{policePassword,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      check = #{check,jdbcType=INTEGER}
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </update>
+</mapper>
